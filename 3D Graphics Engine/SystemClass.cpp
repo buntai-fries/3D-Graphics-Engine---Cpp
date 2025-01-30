@@ -1,4 +1,4 @@
-#include "SystemClass.h"
+#include "systemclass.h"
 
 SystemClass::SystemClass()
 {
@@ -6,13 +6,16 @@ SystemClass::SystemClass()
 	m_Application = 0;
 }
 
+
 SystemClass::SystemClass(const SystemClass& other)
 {
 }
 
+
 SystemClass::~SystemClass()
 {
 }
+
 
 bool SystemClass::Initialize()
 {
@@ -35,7 +38,7 @@ bool SystemClass::Initialize()
 	// Create and initialize the application class object.  This object will handle rendering all the graphics for this application.
 	m_Application = new ApplicationClass;
 
-	result = m_Application->Initialize(screenWidth, screenHeight, m_hWnd);
+	result = m_Application->Initialize(screenWidth, screenHeight, m_hwnd);
 	if (!result)
 	{
 		return false;
@@ -44,7 +47,8 @@ bool SystemClass::Initialize()
 	return true;
 }
 
-void SystemClass::ShutDown()
+
+void SystemClass::Shutdown()
 {
 	// Release the application class object.
 	if (m_Application)
@@ -62,14 +66,17 @@ void SystemClass::ShutDown()
 	}
 
 	// Shutdown the window.
-	ShutDownWindows();
+	ShutdownWindows();
+
 	return;
 }
+
 
 void SystemClass::Run()
 {
 	MSG msg;
 	bool done, result;
+
 
 	// Initialize the message structure.
 	ZeroMemory(&msg, sizeof(MSG));
@@ -99,10 +106,11 @@ void SystemClass::Run()
 				done = true;
 			}
 		}
-
 	}
+
 	return;
 }
+
 
 bool SystemClass::Frame()
 {
@@ -115,7 +123,7 @@ bool SystemClass::Frame()
 		return false;
 	}
 
-	// Do the frame processing for the application class object.
+	// Do the frame processing for the application object.
 	result = m_Application->Frame();
 	if (!result)
 	{
@@ -124,6 +132,7 @@ bool SystemClass::Frame()
 
 	return true;
 }
+
 
 LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam, LPARAM lparam)
 {
@@ -153,6 +162,7 @@ LRESULT CALLBACK SystemClass::MessageHandler(HWND hwnd, UINT umsg, WPARAM wparam
 	}
 }
 
+
 void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 {
 	WNDCLASSEX wc;
@@ -164,7 +174,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	ApplicationHandle = this;
 
 	// Get the instance of this application.
-	m_hInstance = GetModuleHandle(NULL);
+	m_hinstance = GetModuleHandle(NULL);
 
 	// Give the application a name.
 	m_applicationName = L"3D Graphics Engine";
@@ -174,7 +184,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	wc.lpfnWndProc = WndProc;
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
-	wc.hInstance = m_hInstance;
+	wc.hInstance = m_hinstance;
 	wc.hIcon = LoadIcon(NULL, IDI_WINLOGO);
 	wc.hIconSm = wc.hIcon;
 	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
@@ -219,21 +229,23 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	}
 
 	// Create the window with the screen settings and get the handle to it.
-	m_hWnd = CreateWindowEx(WS_EX_APPWINDOW, m_applicationName, m_applicationName,
+	m_hwnd = CreateWindowEx(WS_EX_APPWINDOW, m_applicationName, m_applicationName,
 		WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
-		posX, posY, screenWidth, screenHeight, NULL, NULL, m_hInstance, NULL);
+		posX, posY, screenWidth, screenHeight, NULL, NULL, m_hinstance, NULL);
 
 	// Bring the window up on the screen and set it as main focus.
-	ShowWindow(m_hWnd, SW_SHOW);
-	SetForegroundWindow(m_hWnd);
-	SetFocus(m_hWnd);
+	ShowWindow(m_hwnd, SW_SHOW);
+	SetForegroundWindow(m_hwnd);
+	SetFocus(m_hwnd);
 
 	// Hide the mouse cursor.
 	ShowCursor(false);
+
 	return;
 }
 
-void SystemClass::ShutDownWindows()
+
+void SystemClass::ShutdownWindows()
 {
 	// Show the mouse cursor.
 	ShowCursor(true);
@@ -245,12 +257,12 @@ void SystemClass::ShutDownWindows()
 	}
 
 	// Remove the window.
-	DestroyWindow(m_hWnd);
-	m_hWnd = NULL;
+	DestroyWindow(m_hwnd);
+	m_hwnd = NULL;
 
 	// Remove the application instance.
-	UnregisterClass(m_applicationName, m_hInstance);
-	m_hInstance = NULL;
+	UnregisterClass(m_applicationName, m_hinstance);
+	m_hinstance = NULL;
 
 	// Release the pointer to this class.
 	ApplicationHandle = NULL;
@@ -258,11 +270,12 @@ void SystemClass::ShutDownWindows()
 	return;
 }
 
+
 LRESULT CALLBACK WndProc(HWND hwnd, UINT umessage, WPARAM wparam, LPARAM lparam)
 {
 	switch (umessage)
 	{
-	// Check if the window is being destroyed.
+		// Check if the window is being destroyed.
 	case WM_DESTROY:
 	{
 		PostQuitMessage(0);
