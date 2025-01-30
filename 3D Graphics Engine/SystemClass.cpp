@@ -77,6 +77,7 @@ void SystemClass::Run()
 	MSG msg;
 	bool done, result;
 
+	m_Application->VideoCardDesc();
 
 	// Initialize the message structure.
 	ZeroMemory(&msg, sizeof(MSG));

@@ -1,0 +1,2 @@
+AMD Radeon(TM) Graphics
+485

@@ -415,7 +415,7 @@ void D3DClass::BeginScene(float red, float green, float blue, float alpha)
 	// Setup the color to clear the buffer to.
 	color[0] = red;
 	color[1] = green;
-	color[2] = blue;
+	color[2] = 0;
 	color[3] = alpha;
 
 	// Clear the back buffer.
@@ -483,7 +483,6 @@ void D3DClass::GetVideoCardInfo(char* cardName, int& memory)
 {
 	strcpy_s(cardName, 128, m_videoCardDescription);
 	memory = m_videoCardMemory;
-	std::cout << "The memory of video card is: " << memory;
 	return;
 }
 
@@ -503,4 +502,9 @@ void D3DClass::ResetViewport()
 	m_deviceContext->RSSetViewports(1, &m_viewport);
 
 	return;
+}
+
+int D3DClass::GetMemory()
+{
+	return m_videoCardMemory;
 }

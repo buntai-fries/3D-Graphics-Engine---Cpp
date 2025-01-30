@@ -5,6 +5,10 @@
 // MY CLASS INCLUDES //
 ///////////////////////
 #include "d3dclass.h"
+#include <iostream>
+#include <fstream>
+#include <istream>
+#include <string>
 
 const bool FULL_SCREEN = false;
 const bool VSYNC_ENABLED = true;
@@ -21,6 +25,7 @@ public:
 	bool Initialize(int, int, HWND);
 	void Shutdown();
 	bool Frame();
+	void VideoCardDesc();
 
 private:
 	bool Render();

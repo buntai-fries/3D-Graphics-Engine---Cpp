@@ -1,6 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
-// Filename: d3dclass.h
-////////////////////////////////////////////////////////////////////////////////
 #ifndef _D3DCLASS_H_
 #define _D3DCLASS_H_
 
@@ -33,11 +30,14 @@ public:
 
 	void SetBackBufferRenderTarget();
 	void ResetViewport();
+	int GetMemory();
+
+public:
+	char m_videoCardDescription[128];
 
 private:
 	bool m_vsync_enabled;
 	int m_videoCardMemory;
-	char m_videoCardDescription[128];
 	IDXGISwapChain* m_swapChain;
 	ID3D11Device* m_device;
 	ID3D11DeviceContext* m_deviceContext;

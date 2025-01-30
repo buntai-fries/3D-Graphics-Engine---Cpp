@@ -1,4 +1,5 @@
 #include "Application.h"
+using namespace std;
 
 ApplicationClass::ApplicationClass()
 {
@@ -64,6 +65,26 @@ bool ApplicationClass::Frame()
 	return true;
 }
 
+void ApplicationClass::VideoCardDesc()
+{
+	ofstream fout;
+	string line = m_Direct3D->m_videoCardDescription;
+	int memory = m_Direct3D->GetMemory();
+
+	fout.open("VideoCardDesc.txt");
+	
+	if (!fout.is_open())
+	{
+		cout << "There is an error opening the file";
+		return;
+	}
+	
+	fout << line << endl;
+	cout << "The memory of card is: ";
+	fout << memory << endl;
+	fout.close(); // necessary
+	return;
+}
 
 bool ApplicationClass::Render()
 {
