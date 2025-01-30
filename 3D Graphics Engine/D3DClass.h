@@ -4,26 +4,11 @@
 #ifndef _D3DCLASS_H_
 #define _D3DCLASS_H_
 
-
-/////////////
-// LINKING //
-/////////////
-#pragma comment(lib, "d3d11.lib")
-#pragma comment(lib, "dxgi.lib")
-#pragma comment(lib, "d3dcompiler.lib")
-
-
-//////////////
-// INCLUDES //
-//////////////
 #include <d3d11.h>
 #include <directxmath.h>
+#include <iostream>
 using namespace DirectX;
 
-
-////////////////////////////////////////////////////////////////////////////////
-// Class name: D3DClass
-////////////////////////////////////////////////////////////////////////////////
 class D3DClass
 {
 public:

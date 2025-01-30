@@ -1,8 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
-// Filename: d3dclass.cpp
-////////////////////////////////////////////////////////////////////////////////
 #include "d3dclass.h"
-
 
 D3DClass::D3DClass()
 {
@@ -33,7 +29,9 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	IDXGIFactory* factory;
 	IDXGIAdapter* adapter;
 	IDXGIOutput* adapterOutput;
-	unsigned int numModes, i, numerator, denominator;
+	unsigned int numModes = 0;
+	unsigned int i;
+	unsigned int numerator{}, denominator{};
 	unsigned long long stringLength;
 	DXGI_MODE_DESC* displayModeList;
 	DXGI_ADAPTER_DESC adapterDesc;
@@ -74,7 +72,7 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 
 	// Get the number of modes that fit the DXGI_FORMAT_R8G8B8A8_UNORM display format for the adapter output (monitor).
 	result = adapterOutput->GetDisplayModeList(DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_ENUM_MODES_INTERLACED, &numModes, NULL);
-	if (FAILED(result))
+	if (FAILED(result) || numModes == 0)
 	{
 		return false;
 	}
@@ -97,12 +95,13 @@ bool D3DClass::Initialize(int screenWidth, int screenHeight, bool vsync, HWND hw
 	// When a match is found store the numerator and denominator of the refresh rate for that monitor.
 	for (i = 0; i < numModes; i++)
 	{
-		if (displayModeList[i].Width == (unsigned int)screenWidth)
+		if ((unsigned int)displayModeList[i].Width == (unsigned int)screenWidth)
 		{
-			if (displayModeList[i].Height == (unsigned int)screenHeight)
+			if ((unsigned int)displayModeList[i].Height == (unsigned int)screenHeight)
 			{
 				numerator = displayModeList[i].RefreshRate.Numerator;
 				denominator = displayModeList[i].RefreshRate.Denominator;
+				break;
 			}
 		}
 	}
@@ -413,7 +412,6 @@ void D3DClass::BeginScene(float red, float green, float blue, float alpha)
 {
 	float color[4];
 
-
 	// Setup the color to clear the buffer to.
 	color[0] = red;
 	color[1] = green;
@@ -485,6 +483,7 @@ void D3DClass::GetVideoCardInfo(char* cardName, int& memory)
 {
 	strcpy_s(cardName, 128, m_videoCardDescription);
 	memory = m_videoCardMemory;
+	std::cout << "The memory of video card is: " << memory;
 	return;
 }
 
