@@ -415,7 +415,7 @@ void D3DClass::BeginScene(float red, float green, float blue, float alpha)
 	// Setup the color to clear the buffer to.
 	color[0] = red;
 	color[1] = green;
-	color[2] = 0;
+	color[2] = blue;
 	color[3] = alpha;
 
 	// Clear the back buffer.
