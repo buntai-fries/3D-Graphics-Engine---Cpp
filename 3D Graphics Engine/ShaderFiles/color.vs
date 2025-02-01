@@ -17,11 +17,11 @@ struct PixelInputType
 	float4 color:COLOR;
 };
 
-PixelInputType ColorVertexShader(VertexInputType)
+PixelInputType ColorVertexShader(VertexInputType input)
 {
 	PixelInputType output;
 
-	input.position.w = 10;
+	input.position.w = 1.0f;
 
 	output.position = mul(input.position, worldMatrix);
 	output.position = mul(output.position, viewMatrix);
