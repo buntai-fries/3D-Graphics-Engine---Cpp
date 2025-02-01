@@ -1,4 +1,8 @@
+////////////////////////////////////////////////////////////////////////////////
+// Filename: systemclass.cpp
+////////////////////////////////////////////////////////////////////////////////
 #include "systemclass.h"
+
 
 SystemClass::SystemClass()
 {
@@ -77,7 +81,6 @@ void SystemClass::Run()
 	MSG msg;
 	bool done, result;
 
-	m_Application->VideoCardDesc();
 
 	// Initialize the message structure.
 	ZeroMemory(&msg, sizeof(MSG));
@@ -107,6 +110,7 @@ void SystemClass::Run()
 				done = true;
 			}
 		}
+
 	}
 
 	return;
@@ -178,7 +182,7 @@ void SystemClass::InitializeWindows(int& screenWidth, int& screenHeight)
 	m_hinstance = GetModuleHandle(NULL);
 
 	// Give the application a name.
-	m_applicationName = L"3D Graphics Engine";
+	m_applicationName = L"Engine";
 
 	// Setup the windows class with default settings.
 	wc.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;

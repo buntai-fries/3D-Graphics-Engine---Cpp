@@ -1,11 +1,21 @@
+////////////////////////////////////////////////////////////////////////////////
+// Filename: modelclass.h
+////////////////////////////////////////////////////////////////////////////////
 #ifndef _MODELCLASS_H_
 #define _MODELCLASS_H_
 
-#pragma once
+
+//////////////
+// INCLUDES //
+//////////////
 #include <d3d11.h>
-#include <DirectXMath.h>
+#include <directxmath.h>
 using namespace DirectX;
 
+
+////////////////////////////////////////////////////////////////////////////////
+// Class name: ModelClass
+////////////////////////////////////////////////////////////////////////////////
 class ModelClass
 {
 private:
@@ -21,17 +31,19 @@ public:
 	~ModelClass();
 
 	bool Initialize(ID3D11Device*);
-	void ShutDown();
+	void Shutdown();
 	void Render(ID3D11DeviceContext*);
+
 	int GetIndexCount();
 
 private:
-	bool InitializeBuffer(ID3D11Device*);
-	void ShutDownBuffers();
+	bool InitializeBuffers(ID3D11Device*);
+	void ShutdownBuffers();
 	void RenderBuffers(ID3D11DeviceContext*);
 
 private:
-	ID3D11Buffer *m_vertexBuffer, *m_indexBuffer;
+	ID3D11Buffer* m_vertexBuffer, * m_indexBuffer;
 	int m_vertexCount, m_indexCount;
 };
+
 #endif
