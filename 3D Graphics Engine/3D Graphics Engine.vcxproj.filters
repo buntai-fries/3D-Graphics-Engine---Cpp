@@ -15,56 +15,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SystemClass.h">
+    <ClInclude Include="inc\DirectXTemplatePCH.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InputClass.h">
+    <ClInclude Include="inc\SimplePixelShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="D3DClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorShaderClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraClass.h">
+    <ClInclude Include="inc\SimpleVertexShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SystemClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ApplicationClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="D3DClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorShaderClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraClass.cpp">
+    <ClCompile Include="src\DirectXTemplatePCH.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ShaderFiles\color.vs" />
-    <None Include="ShaderFiles\color.ps" />
+    <Text Include="Debug\3D Graphics Engine.log" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Debug\3D Graphics Engined.pch" />
+    <None Include="Debug\vc143.idb" />
+    <None Include="Debug\vc143.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ShaderFiles\SimplePixelShader.hlsl" />
+    <FxCompile Include="ShaderFiles\SimpleVertexShader.hlsl" />
   </ItemGroup>
 </Project>
